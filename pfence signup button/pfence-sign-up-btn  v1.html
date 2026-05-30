@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+
+<body>
+
+    <a id="sign-up-btn" href="https://lp.constantcontactpages.com/sl/EJp12hA/PflugervillePfence" target="_blank"
+        data-saferedirecturl="https://www.google.com/url?q=https://lp.constantcontactpages.com/sl/EJp12hA/PflugervillePfence&amp;source=gmail&amp;ust=1757624842382000&amp;usg=AOvVaw2pOzrcw3YE1V6u3iPi5ugI">
+        <span>Sign up to Stay in Touch!</span>
+    </a>
+
+    <style>
+        /* Button-like styling for the <a> */
+        #sign-up-btn {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: rgba(245, 207, 0, 1);
+            border: none;
+            color: #000000;
+            text-align: center;
+            font-size: 18px;
+            padding: 15px 25px;
+            text-decoration: none;
+            /* removes underline */
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+            font-family: "roboto";
+        }
+
+        /* inner span to handle the arrow animation */
+        #sign-up-btn span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        #sign-up-btn span:after {
+            content: '\00bb';
+            /* » */
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        #sign-up-btn:hover span {
+            padding-right: 25px;
+        }
+
+        #sign-up-btn:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+    </style>
+
+</body>
+
+
+</html>

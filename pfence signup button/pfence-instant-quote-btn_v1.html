@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <a id="online-quote-btn" href="/mysalesman-contact" target="_blank"> <span>Instant Online Quote</span>
+    </a>
+
+    <style>
+        /* Button-like styling for the <a> */
+        #online-quote-btn {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: rgba(245, 207, 0, 1);
+            border: none;
+            color: #000000;
+            text-align: center;
+            font-size: 18px;
+            padding: 15px 25px;
+            text-decoration: none;
+            /* removes underline */
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+            font-family: "roboto";
+            /* Fixed positioning */
+            position: fixed;
+            /* 1/3 down the page */
+            top: 33%;
+            /* pulls it to the edge */
+            right: -95px;
+            transform: rotate(-90deg);
+            transform-origin: center center;
+            /* always on top */
+            z-index: 9999;
+            
+        }
+
+        /* inner span to handle the arrow animation */
+        #online-quote-btn span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        #online-quote-btn span:after {
+            content: '\00bb';
+            /* » */
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        #online-quote-btn:hover span {
+            padding-right: 25px;
+        }
+
+        #online-quote-btn:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+    </style>
+
+</body>
+
+
+</html>

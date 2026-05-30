@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Popup Overlay -->
+<div
+  id="popup-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="popup-title"
+  aria-describedby="popup-desc"
+>
+  <div class="popup" tabindex="-1">
+    <button class="close-btn" id="closePopup" aria-label="Close popup">
+      &times;
+    </button>
+    <h2 id="popup-title">Welcome!</h2>
+    <p id="popup-desc">
+      This popup slides in, supports accessibility, and reappears after X days.
+    </p>
+  </div>
+</div>
+<style>
+    
+/* Overlay */
+#popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 9999;
+}
+
+/* Active overlay */
+#popup-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Popup box */
+.popup {
+  background: #fff;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  border-radius: 8px;
+  position: relative;
+  text-align: center;
+  transform: translateY(40px);
+  transition: transform 0.4s ease;
+  outline: none;
+}
+
+/* Slide in when active */
+#popup-overlay.active .popup {
+  transform: translateY(0);
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+</style>
+<script>
+  const overlay = document.getElementById("popup-overlay");
+  const popup = overlay.querySelector(".popup");
+  const closeBtn = document.getElementById("closePopup");
+
+  const POPUP_KEY = "popupLastShown";
+  const SHOW_AFTER_DAYS = 7; // 🔧 CHANGE THIS VALUE
+
+  function shouldShowPopup() {
+    const lastShown = localStorage.getItem(POPUP_KEY);
+    if (!lastShown) return true;
+
+    const now = new Date().getTime();
+    const daysPassed = (now - lastShown) / (1000 * 60 * 60 * 24);
+    return daysPassed >= SHOW_AFTER_DAYS;
+  }
+
+  function showPopup() {
+    overlay.classList.add("active");
+    popup.focus();
+    localStorage.setItem(POPUP_KEY, new Date().getTime());
+    document.body.style.overflow = "hidden";
+  }
+
+  function closePopup() {
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  // Show popup after 2 seconds if eligible
+  window.addEventListener("load", () => {
+    if (shouldShowPopup()) {
+      setTimeout(showPopup, 2000);
+    }
+  });
+
+  // Close via button
+  closeBtn.addEventListener("click", closePopup);
+
+  // Close when clicking outside popup
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      closePopup();
+    }
+  });
+
+  // Close on ESC key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && overlay.classList.contains("active")) {
+      closePopup();
+    }
+  });
+</script>
+
+</body>
+</html>

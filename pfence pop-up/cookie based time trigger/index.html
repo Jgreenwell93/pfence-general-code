@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- Popup Overlay -->
+  <div id="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title" aria-describedby="popup-desc">
+    <div class="popup" tabindex="-1">
+      <button class="close-btn" id="closePopup" aria-label="Close popup">
+        &times;
+      </button>
+      <div id="pop-up-content">
+        <div id="pop-up-img"></div>
+        <div id="pop-up-text-contain">
+          <h2 id="popup-title" class="pop-up-text">Curious on Cost?</h2>
+          <p id="popup-desc" class="pop-up-text">
+            Get a free instant fence quote online today
+          </p>
+          <a id="pop-up-btn" href="https://www.pflugervillepfencecompany.com/instant-quote">Instant Quote</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    #pop-up-img {
+      height: 100%;
+      width: 45%;
+      background-image: url("https://irp.cdn-website.com/c5b0615e/dms3rep/multi/WRC+Stain5.JPEG");
+      border-radius: 5px;
+    }
+
+    @media screen and (max-width:973px) {
+      #pop-up-img {
+        width: 100%;
+        background-position: 50% 20%;
+      }
+    }
+
+    #pop-up-content {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      width: auto;
+      align-items: flex-start;
+      justify-content: space-around;
+    }
+
+    @media screen and (max-width:973px) {
+      #pop-up-content {
+        flex-direction: column;
+      }
+    }
+
+    @media screen and (max-width:973px) {
+      #pop-up-content {
+        align-items: center;
+      }
+    }
+
+    #pop-up-text-contain {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-left: 15px;
+      padding-top: 35px;
+      width: 50%;
+    }
+
+    @media screen and (max-width:973px) {
+      #pop-up-text-contain {
+        padding-top: 0;
+        padding-left: 0;
+        padding-bottom: 10px;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    #popup-title {
+      font-weight: bold;
+      font-size: 40px;
+      margin-bottom: 0;
+    }
+
+    @media screen and (max-width:1327px) {
+      #popup-title {
+        margin: 0;
+      }
+    }
+
+    @media screen and (max-width:723px) {
+      #popup-title {
+        font-size: 35px;
+      }
+    }
+
+    #popup-desc {
+      font-size: 35px;
+      margin-top: 20px;
+      width: 80%;
+    }
+
+    @media screen and (max-width:973px) {
+      #popup-desc {
+        margin: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+    }
+
+    @media screen and (max-width:723px) {
+      #popup-desc {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: 30px;
+      }
+    }
+
+    .pop-up-text {
+      font-family: 'Montserrat';
+    }
+
+    #pop-up-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f5cf00;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      border-radius: 2px;
+      height: 50px;
+      width: 250px;
+      margin-top: 40px;
+      font-size: 20px;
+    }
+
+    @media screen and (max-width:1327px) {
+      #pop-up-btn {
+        margin-top: 0;
+      }
+    }
+
+    #pop-up-btn:hover {
+      border-style: solid;
+      border-color: black;
+      border-width: 1px;
+    }
+
+    #popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      z-index: 9999;
+    }
+
+    #popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup {
+      background: #fff;
+      padding: 30px;
+      max-width: 45vw;
+      width: 100%;
+      max-height: 50vh;
+      height: 50%;
+      border-radius: 8px;
+      position: relative;
+      text-align: center;
+      transform: translateY(40px);
+      transition: transform 0.4s ease;
+      outline: none;
+    }
+
+    @media screen and (max-width:973px) {
+      .popup {
+        padding: 0;
+        max-width: 70vw;
+        min-height: 70vw;
+      }
+    }
+
+    @media screen and (max-width:690px) {
+      .popup {
+        max-width: 85vw;
+        min-height: 85vw;
+      }
+    }
+
+    @media screen and (max-width:590px) {
+      .popup {
+        max-width: 85vw;
+        min-height: 80vh;
+      }
+    }
+
+    #popup-overlay.active .popup {
+      transform: translateY(0);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    @media screen and (max-width:973px) {
+      .close-btn {
+        background-color: rgba(255, 255, 255, 0.5);
+        padding: 0;
+        height: 30px;
+        width: 30px;
+        border-radius: 15px;
+      }
+    }
+
+    /* === DEV MODE: FORCE POPUP VISIBLE === */
+    #popup-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup {
+      transform: translateY(0);
+    }
+  </style>
+  <script>
+    const overlay = document.getElementById("popup-overlay");
+    const popup = overlay.querySelector(".popup");
+    const closeBtn = document.getElementById("closePopup");
+
+    const COOKIE_NAME = "popupLastShown";
+    const SHOW_AFTER_DAYS = 1; // 🔧 CHANGE THIS VALUE
+
+    /* ---------------- Cookie Helpers ---------------- */
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+      document.cookie =
+        name +
+        "=" +
+        value +
+        "; expires=" +
+        date.toUTCString() +
+        "; path=/; SameSite=Lax";
+    }
+
+    function getCookie(name) {
+      const cookies = document.cookie.split("; ");
+      for (let cookie of cookies) {
+        const [key, val] = cookie.split("=");
+        if (key === name) return val;
+      }
+      return null;
+    }
+
+    /* ---------------- Popup Logic ---------------- */
+    function shouldShowPopup() {
+      return !getCookie(COOKIE_NAME);
+    }
+
+    function showPopup() {
+      overlay.classList.add("active");
+      popup.focus();
+      setCookie(COOKIE_NAME, "true", SHOW_AFTER_DAYS);
+      document.body.style.overflow = "hidden";
+    }
+
+    function closePopup() {
+      overlay.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    /* ---------------- Events ---------------- */
+    window.addEventListener("load", () => {
+      if (shouldShowPopup()) {
+        setTimeout(showPopup, 2000);
+      }
+    });
+
+    closeBtn.addEventListener("click", closePopup);
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        closePopup();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && overlay.classList.contains("active")) {
+        closePopup();
+      }
+    });
+  </script>
+
+</body>
+
+</html>
