@@ -280,7 +280,7 @@ function handleScroll() {
 
   const scrollPercent = (scrollTop + windowHeight) / docHeight;
 
-  if (scrollPercent >= 0.4) {
+  if (scrollPercent >= 0.2) {
     popupTriggered = true;
     showPopup();
     window.removeEventListener("scroll", handleScroll);
